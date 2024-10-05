@@ -11,7 +11,7 @@ namespace Hackaton.Persistence
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<HackatonDbContext>(options =>
-                options.UseInMemoryDatabase(configuration.GetConnectionString("ConnectionString")));
+                options.UseSqlServer(configuration.GetConnectionString("ConnectionString")));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 

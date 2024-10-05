@@ -24,7 +24,7 @@ namespace Hackaton.Application.Features.Commands.LoginPaciente
             }
 
             // Gera um token JWT para o médico
-            return _jwtService.GenerateToken(paciente.PacienteId, paciente.Email);
+            return _jwtService.GenerateToken(paciente.PacienteId, paciente.Email, "Paciente");
         }
     }
 }

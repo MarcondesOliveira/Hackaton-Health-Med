@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hackaton.Domain.Entities;
 using Hackaton.Domain.Interfaces;
 using MediatR;
 
@@ -23,8 +24,10 @@ namespace Hackaton.Application.Features.Commands.UpdateConsulta
                 return false; 
             }
 
+            consulta.PacienteId = request.PacienteId;
             consulta.Data = request.Data; 
-
+            consulta.Status = request.Status;
+            
             await _consultaRepository.UpdateAsync(consulta); 
 
             return true; 

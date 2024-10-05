@@ -2,7 +2,7 @@
 {
     public interface IJwtService
     {
-        string GenerateToken(Guid medicoId, string email);
+        string GenerateToken(Guid medicoId, string email, string role);
     }
 
 }

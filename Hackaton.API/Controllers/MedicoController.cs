@@ -111,14 +111,14 @@ namespace Hackaton.API.Controllers
             return Ok(consultasDto);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Medico")]
         [HttpPut("editar-consulta")]
         public async Task<IActionResult> UpdateConsulta([FromBody] UpdateConsultaCommand command)
         {
             if (command == null || command.ConsultaId == Guid.Empty)
             {
                 return BadRequest();
-            }
+            }            
 
             var success = await _mediator.Send(command);
 

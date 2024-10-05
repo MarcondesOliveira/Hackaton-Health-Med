@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Hackaton.Application.Features.Commands.CreatePaciente;
 using Hackaton.Application.Features.Commands.LoginPaciente;
+using Hackaton.Application.Features.Commands.UpdateConsulta;
 using Hackaton.Application.Features.Queries.GetMedicos;
 using Hackaton.Application.Features.Queries.GetPacienteById;
 using Hackaton.Domain.Dto;
+using Hackaton.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -66,6 +68,27 @@ namespace Hackaton.API.Controllers
                 return NotFound();
             }
             return Ok(paciente);
+        }
+
+        [Authorize(Roles = "Paciente")]
+        [HttpPut("agendar-consulta")]
+        public async Task<IActionResult> UpdateConsulta([FromBody] UpdateConsultaCommand command)
+        {
+            if (command == null || command.ConsultaId == Guid.Empty)
+            {
+                return BadRequest();
+            }
+
+            command.Status = Status.Agendada;
+
+            var success = await _mediator.Send(command);
+
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
     }
 }
