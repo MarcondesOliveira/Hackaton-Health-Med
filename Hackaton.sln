@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackaton.Persistence", "Hac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackaton.API", "Hackaton.API\Hackaton.API.csproj", "{AB8F06D2-DDD7-45E1-9397-E90CA2151304}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackaton.Infrastructure", "Hackaton.Infrastructure\Hackaton.Infrastructure.csproj", "{67A21B5D-0733-42B7-B51C-0E52B156EDF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{AB8F06D2-DDD7-45E1-9397-E90CA2151304}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB8F06D2-DDD7-45E1-9397-E90CA2151304}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB8F06D2-DDD7-45E1-9397-E90CA2151304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67A21B5D-0733-42B7-B51C-0E52B156EDF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A21B5D-0733-42B7-B51C-0E52B156EDF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A21B5D-0733-42B7-B51C-0E52B156EDF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A21B5D-0733-42B7-B51C-0E52B156EDF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{B11BA461-484B-4365-9ADF-58F417C78A46} = {431E79F5-DCE1-4F81-AD3D-D7078C91A54D}
 		{AB29E1DF-A863-43F4-B97A-4D3B6711F4CA} = {79B4C69E-D7F2-4334-92B9-F04067258EDC}
 		{AB8F06D2-DDD7-45E1-9397-E90CA2151304} = {B5AB5774-4D63-41BA-A1C0-A2E812707C15}
+		{67A21B5D-0733-42B7-B51C-0E52B156EDF0} = {79B4C69E-D7F2-4334-92B9-F04067258EDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B90B809E-EA8A-4D01-A04E-E354BDBBBE52}
