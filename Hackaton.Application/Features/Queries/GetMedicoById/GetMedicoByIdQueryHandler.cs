@@ -18,7 +18,7 @@ namespace Hackaton.Application.Features.Queries.GetMedicoById
 
         public async Task<MedicoDto> Handle(GetMedicoByIdQuery request, CancellationToken cancellationToken)
         {
-            var medico = await _medicoRepository.GetByIdAsync(request.Id);
+            var medico = await _medicoRepository.GetByIdWithConsultasAsync(request.Id);
             if (medico == null)
             {
                 return null;

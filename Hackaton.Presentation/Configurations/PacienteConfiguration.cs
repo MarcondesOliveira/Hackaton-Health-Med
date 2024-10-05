@@ -12,7 +12,7 @@ namespace Hackaton.Persistence.Configurations
             builder.Property(m => m.Nome).HasColumnType("varchar(100)").IsRequired();
             builder.Property(m => m.CPF).HasColumnType("varchar(15)").IsRequired();
             builder.Property(m => m.Email).HasColumnType("varchar(50)").IsRequired();
-            builder.Property(m => m.Senha).HasColumnType("varchar(20)").IsRequired();
+            builder.Property(m => m.Senha).HasColumnType("varchar(100)").IsRequired();
         }
     }
 }

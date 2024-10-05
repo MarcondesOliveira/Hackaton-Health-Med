@@ -1,10 +1,5 @@
 ﻿using Hackaton.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hackaton.Application.Features.Commands.LoginMedico
 {
@@ -29,8 +24,7 @@ namespace Hackaton.Application.Features.Commands.LoginMedico
             }
 
             // Gera um token JWT para o médico
-            return _jwtService.GenerateToken(medico.MedicoId, medico.Email);
+            return _jwtService.GenerateToken(medico.MedicoId, medico.Email, "Medico");
         }
     }
-
 }

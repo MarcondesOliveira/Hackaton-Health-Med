@@ -15,14 +15,15 @@ namespace Hackaton.API.Services
             _configuration = configuration;
         }
 
-        public string GenerateToken(Guid medicoId, string email)
+        public string GenerateToken(Guid usuarioId, string email, string role)
         {
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, medicoId.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
+                new Claim(JwtRegisteredClaimNames.Sub, usuarioId.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Role, role) // Adiciona a role como uma claim
+            };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

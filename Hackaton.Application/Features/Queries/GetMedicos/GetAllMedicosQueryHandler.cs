@@ -18,7 +18,7 @@ namespace Hackaton.Application.Features.Queries.GetMedicos
 
         public async Task<List<MedicoDto>> Handle(GetAllMedicosQuery request, CancellationToken cancellationToken)
         {
-            var medicos = await _medicoRepository.ListAllAsync();
+            var medicos = await _medicoRepository.ListAllWithConsultasAsync();
             return _mapper.Map<List<MedicoDto>>(medicos);
         }
     }
