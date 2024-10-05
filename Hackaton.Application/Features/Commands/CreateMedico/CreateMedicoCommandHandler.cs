@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BCrypt.Net;
 using Hackaton.Application.Features.Commands.CreateMedico;
 using Hackaton.Domain.Dto;
 using Hackaton.Domain.Entities;
@@ -23,6 +24,7 @@ namespace Hackaton.Application.Features.Commands.CreateMedico
             // Usando AutoMapper para mapear o comando para a entidade Medico
             var medico = _mapper.Map<Medico>(request);
             medico.MedicoId = Guid.NewGuid(); // Gerar o ID manualmente
+            medico.Senha = BCrypt.Net.BCrypt.HashPassword(request.Senha);
             medico.Consultas = new List<Consulta>(); // Inicializar a lista de Consultas
 
             await _medicoRepository.AddAsync(medico);

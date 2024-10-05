@@ -1,10 +1,10 @@
 ﻿using Hackaton.Domain.Interfaces;
-using Hackaton.Presentation.Repositories;
+using Hackaton.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Hackaton.Presentation
+namespace Hackaton.Persistence
 {
     public static class PersistenceServiceRegistration
     {

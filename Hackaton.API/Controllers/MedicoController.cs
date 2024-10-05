@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Hackaton.Application.Features.Commands.CreateMedico;
+using Hackaton.Application.Features.Commands.LoginMedico;
 using Hackaton.Application.Features.Queries.GetMedicoById;
 using Hackaton.Application.Features.Queries.GetMedicos;
 using Hackaton.Application.Services;
 using Hackaton.Domain.Dto;
 using Hackaton.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hackaton.API.Controllers
@@ -23,8 +25,8 @@ namespace Hackaton.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateMedico([FromBody] CreateMedicoCommand command)
+        [HttpPost("cadastro")]
+        public async Task<IActionResult> CadastroMedico([FromBody] CreateMedicoCommand command)
         {
             if (command == null)
             {
@@ -35,7 +37,21 @@ namespace Hackaton.API.Controllers
             return CreatedAtAction(nameof(GetMedicoById), new { id = medicoId }, medicoId);
         }
 
-        [HttpGet]
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginMedicoCommand command)
+        {
+            if (command == null)
+            {
+                return BadRequest();
+            }
+
+            var token = await _mediator.Send(command);
+            return Ok(new { Token = token });
+        }
+
+
+        [Authorize]
+        [HttpGet("todos-medicos")]
         public async Task<ActionResult<List<MedicoDto>>> GetAllMedicos()
         {
             var query = new GetAllMedicosQuery();
@@ -43,6 +59,7 @@ namespace Hackaton.API.Controllers
             return Ok(medicos);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<MedicoDto>> GetMedicoById(Guid id)
         {

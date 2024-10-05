@@ -1,7 +1,7 @@
 ﻿using Hackaton.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Hackaton.Presentation
+namespace Hackaton.Persistence
 {
     public class HackatonDbContext : DbContext
     {

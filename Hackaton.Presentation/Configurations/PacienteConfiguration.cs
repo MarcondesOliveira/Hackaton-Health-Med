@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Hackaton.Presentation.Configurations
+namespace Hackaton.Persistence.Configurations
 {
     public class PacienteConfiguration : IEntityTypeConfiguration<Paciente>
     {

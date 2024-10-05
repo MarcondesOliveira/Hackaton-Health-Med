@@ -1,7 +1,8 @@
 ﻿using Hackaton.Domain.Interfaces;
+using Hackaton.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Hackaton.Presentation.Repositories
+namespace Hackaton.Persistence.Repositories
 {
     public class BaseRepository<T> : IAsyncRepository<T> where T : class
     {

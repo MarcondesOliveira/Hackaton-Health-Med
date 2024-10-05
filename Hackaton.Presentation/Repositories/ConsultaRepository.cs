@@ -1,7 +1,8 @@
 ﻿using Hackaton.Domain.Entities;
 using Hackaton.Domain.Interfaces;
+using Hackaton.Persistence;
 
-namespace Hackaton.Presentation.Repositories
+namespace Hackaton.Persistence.Repositories
 {
     public class ConsultaRepository : BaseRepository<Consulta>, IConsultaRepository
     {
