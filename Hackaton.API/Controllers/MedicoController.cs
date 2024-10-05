@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Hackaton.Application.Features.Commands.CreateConsulta;
 using Hackaton.Application.Features.Commands.CreateMedico;
 using Hackaton.Application.Features.Commands.LoginMedico;
+using Hackaton.Application.Features.Queries.GetConsultaById;
 using Hackaton.Application.Features.Queries.GetMedicoById;
 using Hackaton.Application.Features.Queries.GetMedicos;
 using Hackaton.Application.Services;
@@ -70,6 +72,32 @@ namespace Hackaton.API.Controllers
             }
             return Ok(medico);
         }
+
+        [HttpPost("consulta")]
+        public async Task<IActionResult> CreateConsulta([FromBody] CreateConsultaCommand command)
+        {
+            if (command == null)
+            {
+                return BadRequest();
+            }
+
+            var consultaId = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetConsultaById), new { id = consultaId }, consultaId);
+        }
+
+        [HttpGet("consulta/{id}")]
+        public async Task<ActionResult<ConsultaDto>> GetConsultaById(Guid id)
+        {
+            var consultaDto = await _mediator.Send(new GetConsultaByIdQuery(id)); // Envia a consulta
+
+            if (consultaDto == null)
+            {
+                return NotFound(); // Retorna 404 se não encontrar
+            }
+
+            return Ok(consultaDto); // Retorna o DTO com status 200
+        }
+
 
         //[HttpPut("{id}")]
         //public async Task<IActionResult> UpdateMedico(Guid id, [FromBody] UpdateMedicoCommand command)

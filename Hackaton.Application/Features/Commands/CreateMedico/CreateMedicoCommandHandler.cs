@@ -21,11 +21,10 @@ namespace Hackaton.Application.Features.Commands.CreateMedico
 
         public async Task<Guid> Handle(CreateMedicoCommand request, CancellationToken cancellationToken)
         {
-            // Usando AutoMapper para mapear o comando para a entidade Medico
             var medico = _mapper.Map<Medico>(request);
-            medico.MedicoId = Guid.NewGuid(); // Gerar o ID manualmente
+            medico.MedicoId = Guid.NewGuid(); 
             medico.Senha = BCrypt.Net.BCrypt.HashPassword(request.Senha);
-            medico.Consultas = new List<Consulta>(); // Inicializar a lista de Consultas
+            medico.Consultas = new List<Consulta>();
 
             await _medicoRepository.AddAsync(medico);
 
@@ -33,33 +32,3 @@ namespace Hackaton.Application.Features.Commands.CreateMedico
         }
     }
 }
-
-//public async Task<Guid> Handle(CreateMedicoCommand request, CancellationToken cancellationToken)
-//{
-//    var medico = _mapper.Map<Medico>(request); // Faz o mapeamento do objeto CreateMedicoCommand para Medico
-
-//    medico.MedicoId = Guid.NewGuid();
-//    medico.Consultas = new List<Consulta>();
-
-//    await _medicoRepository.AddAsync(medico);
-
-//    return medico.MedicoId;
-//}
-
-//public async Task<Guid> Handle(CreateMedicoCommand request, CancellationToken cancellationToken)
-//{
-//    var medico = new Medico
-//    {
-//        MedicoId = Guid.NewGuid(),
-//        CRM = request.CRM,
-//        CPF = request.CPF,
-//        Email = request.Email,
-//        Nome = request.Nome,
-//        Senha = request.Senha,
-//        Consultas = new List<Consulta>()
-//    };
-
-//    await _medicoRepository.AddAsync(medico);
-
-//    return medico.MedicoId;
-//}
