@@ -3,6 +3,7 @@ using Hackaton.Application.Features.Commands.CreateConsulta;
 using Hackaton.Application.Features.Commands.CreateMedico;
 using Hackaton.Application.Features.Commands.LoginMedico;
 using Hackaton.Application.Features.Queries.GetConsultaById;
+using Hackaton.Application.Features.Queries.GetConsultas;
 using Hackaton.Application.Features.Queries.GetMedicoById;
 using Hackaton.Application.Features.Queries.GetMedicos;
 using Hackaton.Application.Services;
@@ -97,6 +98,15 @@ namespace Hackaton.API.Controllers
 
             return Ok(consultaDto); // Retorna o DTO com status 200
         }
+
+        [HttpGet("consultas")]
+        public async Task<ActionResult<List<ConsultaDto>>> ListarConsultas()
+        {
+            var consultasDto = await _mediator.Send(new GetConsultasQuery()); // Envia a consulta
+
+            return Ok(consultasDto); // Retorna a lista de DTOs com status 200
+        }
+
 
 
         //[HttpPut("{id}")]
