@@ -25,13 +25,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackaton.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackaton.Application.Tests", "Hackaton.Application.Tests\Hackaton.Application.Tests.csproj", "{D456F2F1-E2A3-4625-9942-79F6939946A3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{BCAE3FF2-6081-4AAE-A564-87FCE1291D8F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{DE16449C-9165-4B0F-961B-47BA0E032B0E}"
-	ProjectSection(SolutionItems) = preProject
-		cy.yml = cy.yml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,7 +69,6 @@ Global
 		{AB8F06D2-DDD7-45E1-9397-E90CA2151304} = {B5AB5774-4D63-41BA-A1C0-A2E812707C15}
 		{67A21B5D-0733-42B7-B51C-0E52B156EDF0} = {79B4C69E-D7F2-4334-92B9-F04067258EDC}
 		{D456F2F1-E2A3-4625-9942-79F6939946A3} = {AB2245C5-72D6-410E-AB95-FB3644DA1792}
-		{DE16449C-9165-4B0F-961B-47BA0E032B0E} = {BCAE3FF2-6081-4AAE-A564-87FCE1291D8F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B90B809E-EA8A-4D01-A04E-E354BDBBBE52}
