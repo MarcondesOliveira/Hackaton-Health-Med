@@ -1,6 +1,7 @@
 ﻿using Hackaton.API.Services;
 using Hackaton.Application;
 using Hackaton.Domain.Interfaces;
+using Hackaton.Infrastructure.Services;
 using Hackaton.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -19,6 +20,7 @@ namespace Hackaton.API
 
             // Adicione isso no método ConfigureServices
             builder.Services.AddScoped<IJwtService, JwtService>();
+            builder.Services.AddTransient<IEmailService, EmailService>();
 
 
             builder.Services.AddHttpContextAccessor();

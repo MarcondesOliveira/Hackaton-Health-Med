@@ -7,9 +7,7 @@ using Hackaton.Application.Features.Queries.GetConsultaById;
 using Hackaton.Application.Features.Queries.GetConsultas;
 using Hackaton.Application.Features.Queries.GetMedicoById;
 using Hackaton.Application.Features.Queries.GetMedicos;
-using Hackaton.Application.Services;
 using Hackaton.Domain.Dto;
-using Hackaton.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -118,7 +116,7 @@ namespace Hackaton.API.Controllers
             if (command == null || command.ConsultaId == Guid.Empty)
             {
                 return BadRequest();
-            }            
+            }
 
             var success = await _mediator.Send(command);
 
@@ -128,6 +126,6 @@ namespace Hackaton.API.Controllers
             }
 
             return NoContent();
-        }       
+        }
     }
 }
