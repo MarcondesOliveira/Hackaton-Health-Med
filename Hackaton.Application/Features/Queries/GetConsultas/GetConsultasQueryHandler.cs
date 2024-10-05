@@ -18,9 +18,9 @@ namespace Hackaton.Application.Features.Queries.GetConsultas
 
         public async Task<List<ConsultaDto>> Handle(GetConsultasQuery request, CancellationToken cancellationToken)
         {
-            var consultas = await _consultaRepository.ListAllAsync(); // Método que obtém todas as consultas
+            var consultas = await _consultaRepository.ListAllAsync();
 
-            return _mapper.Map<List<ConsultaDto>>(consultas); // Mapeia as entidades para os DTOs
+            return _mapper.Map<List<ConsultaDto>>(consultas);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Hackaton.Application.Features.Commands.CreateConsulta;
 using Hackaton.Application.Features.Commands.CreateMedico;
 using Hackaton.Application.Features.Commands.LoginMedico;
+using Hackaton.Application.Features.Commands.UpdateConsulta;
 using Hackaton.Application.Features.Queries.GetConsultaById;
 using Hackaton.Application.Features.Queries.GetConsultas;
 using Hackaton.Application.Features.Queries.GetMedicoById;
@@ -28,7 +29,7 @@ namespace Hackaton.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("cadastro")]
+        [HttpPost("cadastrar")]
         public async Task<IActionResult> CadastroMedico([FromBody] CreateMedicoCommand command)
         {
             if (command == null)
@@ -74,7 +75,8 @@ namespace Hackaton.API.Controllers
             return Ok(medico);
         }
 
-        [HttpPost("consulta")]
+        [Authorize]
+        [HttpPost("cadastrar-consulta")]
         public async Task<IActionResult> CreateConsulta([FromBody] CreateConsultaCommand command)
         {
             if (command == null)
@@ -86,46 +88,46 @@ namespace Hackaton.API.Controllers
             return CreatedAtAction(nameof(GetConsultaById), new { id = consultaId }, consultaId);
         }
 
+        [Authorize]
         [HttpGet("consulta/{id}")]
         public async Task<ActionResult<ConsultaDto>> GetConsultaById(Guid id)
         {
-            var consultaDto = await _mediator.Send(new GetConsultaByIdQuery(id)); // Envia a consulta
+            var consultaDto = await _mediator.Send(new GetConsultaByIdQuery(id));
 
             if (consultaDto == null)
             {
-                return NotFound(); // Retorna 404 se não encontrar
+                return NotFound();
             }
 
-            return Ok(consultaDto); // Retorna o DTO com status 200
+            return Ok(consultaDto);
         }
 
-        [HttpGet("consultas")]
+        [Authorize]
+        [HttpGet("todas-consultas")]
         public async Task<ActionResult<List<ConsultaDto>>> ListarConsultas()
         {
-            var consultasDto = await _mediator.Send(new GetConsultasQuery()); // Envia a consulta
+            var consultasDto = await _mediator.Send(new GetConsultasQuery());
 
-            return Ok(consultasDto); // Retorna a lista de DTOs com status 200
+            return Ok(consultasDto);
         }
 
+        [Authorize]
+        [HttpPut("editar-consulta")]
+        public async Task<IActionResult> UpdateConsulta([FromBody] UpdateConsultaCommand command)
+        {
+            if (command == null || command.ConsultaId == Guid.Empty)
+            {
+                return BadRequest();
+            }
 
+            var success = await _mediator.Send(command);
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> UpdateMedico(Guid id, [FromBody] UpdateMedicoCommand command)
-        //{
-        //    if (id != command.MedicoId)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (!success)
+            {
+                return NotFound();
+            }
 
-        //    await _mediator.Send(command);
-        //    return NoContent();
-        //}
-
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteMedico(Guid id)
-        //{
-        //    await _mediator.Send(new DeleteMedicoCommand { MedicoId = id });
-        //    return NoContent();
-        //}
+            return NoContent();
+        }       
     }
 }
