@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Hackaton.Application.Features.Commands.CreateConsulta;
 using Hackaton.Application.Features.Commands.CreatePaciente;
-using Hackaton.Application.Features.Commands.LoginMedico;
 using Hackaton.Application.Features.Commands.LoginPaciente;
+using Hackaton.Application.Features.Queries.GetMedicos;
 using Hackaton.Application.Features.Queries.GetPacienteById;
 using Hackaton.Domain.Dto;
 using MediatR;
@@ -46,6 +45,15 @@ namespace Hackaton.API.Controllers
 
             var token = await _mediator.Send(command);
             return Ok(new { Token = token });
+        }
+
+        [Authorize]
+        [HttpGet("todos-medicos")]
+        public async Task<ActionResult<List<MedicoDto>>> GetAllMedicos()
+        {
+            var query = new GetAllMedicosQuery();
+            var medicos = await _mediator.Send(query);
+            return Ok(medicos);
         }
 
         [Authorize]
