@@ -22,5 +22,21 @@ namespace Hackaton.Persistence.Repositories
 
             return null;
         }
+
+        public async Task<Medico> GetByIdWithConsultasAsync(Guid medicoId)
+        {
+            return await _dbContext.Medicos
+                                 .Include(m => m.Consultas) // Inclui as consultas relacionadas
+                                 .FirstOrDefaultAsync(m => m.MedicoId == medicoId)
+                                    ?? throw new Exception("Esse médico nao tem consultas");
+        }
+
+        public async Task<List<Medico>> ListAllWithConsultasAsync()
+        {
+            return await _dbContext.Medicos
+                                 .Include(m => m.Consultas) // Inclui as consultas relacionadas a cada médico
+                                 .ToListAsync();
+        }
+
     }
 }

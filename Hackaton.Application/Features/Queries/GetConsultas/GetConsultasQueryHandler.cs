@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Hackaton.Application.Features.Queries.GetConsultas
 {
-    internal class GetConsultasQueryHandler : IRequestHandler<GetConsultasQuery, List<ConsultaDto>>
+    public class GetConsultasQueryHandler : IRequestHandler<GetConsultasQuery, List<ConsultaDto>>
     {
         private readonly IConsultaRepository _consultaRepository;
         private readonly IMapper _mapper;

@@ -12,7 +12,8 @@ namespace Hackaton.Application.Profiles
         public MappingProfile()
         {
             // Mapeamento entre Medico e MedicoDto
-            CreateMap<Medico, MedicoDto>();
+            CreateMap<Medico, MedicoDto>()
+                .ForMember(dest => dest.Consultas, opt => opt.MapFrom(src => src.Consultas));
 
             // Mapeamento entre Consulta e ConsultaDto
             CreateMap<Consulta, ConsultaDto>();

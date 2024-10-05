@@ -1,4 +1,6 @@
-﻿namespace Hackaton.Domain.Dto
+﻿using Hackaton.Domain.Entities;
+
+namespace Hackaton.Domain.Dto
 {
     public class MedicoDto
     {
@@ -7,5 +9,6 @@
         public string CPF { get; set; }
         public string CRM { get; set; }
         public string Email { get; set; }
+        public List<ConsultaDto> Consultas { get; set; }
     }
 }
