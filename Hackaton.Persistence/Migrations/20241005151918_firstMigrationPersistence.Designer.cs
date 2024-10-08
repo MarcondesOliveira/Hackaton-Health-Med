@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackaton.Persistence.Migrations
 {
     [DbContext(typeof(HackatonDbContext))]
-    [Migration("20241005054220_firstMigrationPersistence")]
+    [Migration("20241005151918_firstMigrationPersistence")]
     partial class firstMigrationPersistence
     {
         /// <inheritdoc />
